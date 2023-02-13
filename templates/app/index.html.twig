@@ -3,21 +3,27 @@
 {% block title %}Hello AppController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Districts</h1>
-    <ul>
-        {% for district in districts %}
-            <li>
-                <a href="{{ path('district_show', {'id': district.id}) }}">
-                    {{ district.name }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us" style="margin-top: 150px">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Why Us</h2>
+                <p>We're open in these districts</p>
+            </div>
+
+            <div class="row">
+            {% for district in districts %}
+                {% include 'card/why-us-section.html.twig' with{
+                    id: district.id,
+                    name: district.name,
+                    url: path('district_show', {'id': district.id}),
+                }%}
+            {% endfor %}
+            </div>
+
+        </div>
+    </section><!-- End Why Us Section -->
+
 {% endblock %}
